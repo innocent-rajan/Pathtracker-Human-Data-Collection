@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Pathtracker Human Data Collection Home</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+</head>
+
+<body>
+    <main role="main" class="container">
+        <div class="jumbotron">
+            <h2>
+                Hello!
+            </h2>
+            <p>
+                Thank you for agreeing to participate in this research study. We are collecting data about tracking dots, and comparing how neural network algorithms perform in comparison to humans. In a nutshell we are trying to assess if neural network algorithms have surpassed human efficiency in tracking yet.
+            </p>
+            <p>
+                <b><u>INSTRUCTIONS:</u></b> Below, you will see a video with dots and two colored markers (red and blue). You have to track the dot coming out of the red marker and see if it goes into the blue marker or not. If the dot goes into the blue marker, please click on Positive. If the dot coming out of red marker goes somewhere else and another random dot comes inside blue marker, please click on Negative.
+            </p>
+        </div>
+        <center>
+            <p style="font-size: 21px"><b>Video - {{ cur + 1 }} / {{ total }}</b></p>
+            <video width="auto" height="auto" controls>
+                <source src="{{ video_url }}" type="video/mp4">
+                Your browser does not support the video tag. Try using the latest version of Chrome or Firefox.
+            </video>
+            <br>
+            <div class="btn-group" data-toggle="buttons">
+                <form action="/next" method="post" id="form_res">
+                    <label class="btn btn-success" onclick="positive_res()">
+                        <input type="radio" class="btn btn-success" name="response" id="positive" value="1" onclick="positive_res()"> Positive
+                    </label>
+                    <label class="btn btn-danger" onclick="negative_res()">
+                        <input type="radio" class="btn btn-danger" name="response" id="negative" value="0" onclick="negative_res()"> Negative
+                    </label>
+                    <input type="hidden" name="cur_idx" value="{{ cur }}">
+                    <input type="hidden" id="response" value="-1" name="response">
+                </form>
+            </div>
+        </center>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script>
+        function positive_res(){
+            document.getElementById("response").value = "1";
+            document.getElementById("form_res").submit();
+        }
+
+        function negative_res(){
+            document.getElementById("response").value = "0";
+            document.getElementById("form_res").submit();
+        }
+    </script>
+</body>
+</html>

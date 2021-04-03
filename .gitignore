@@ -1,0 +1,5 @@
+.idea/*
+.env
+bin/*
+lib/*
+pyvenv.cfg
